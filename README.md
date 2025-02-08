@@ -1,16 +1,15 @@
-# tic_tac_toe
+# Tic Tac Toe (X-O) Game
 
-A new Flutter project.
+This is a simple Tic Tac Toe (X-O) game built using Flutter. The game allows two players to play on a 3x3 grid, taking turns to place either an X or O in an empty spot. The game checks for a winner after each move and displays the result (either X wins, O wins, or a draw).
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Two-player turn-based gameplay.
+- Automatic checking for a winner after every move.
+- Visual indication of the winning line (horizontal, vertical, or diagonal).
+- Restart button to start a new game after a win or draw.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<!-- ![Screenshot](./images/screenshot.png) --> <!-- Replace with your actual screenshot path -->
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
