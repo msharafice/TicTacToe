@@ -22,11 +22,11 @@ class TicTacToeGame extends StatefulWidget {
 }
 
 class _TicTacToeGameState extends State<TicTacToeGame> {
-  List<String> board = List.generate(9, (index) => ''); // شبکه 3x3
-  String currentPlayer = 'X'; // شروع با X
-  bool gameOver = false; // برای مشخص کردن وضعیت بازی
-  String winner = ''; // برای ذخیره کردن برنده
-  List<int> winningLine = []; // برای ذخیره کردن خانه‌های برنده
+  List<String> board = List.generate(9, (index) => '');
+  String currentPlayer = 'X';
+  bool gameOver = false;
+  String winner = '';
+  List<int> winningLine = [];
 
   void _handleTap(int index) {
     if (board[index] == '' && !gameOver) {
@@ -42,43 +42,34 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     }
   }
 
-  // بررسی برنده و ذخیره خانه‌های برنده
   String _checkWinner() {
-    // خطوط افقی
     for (int i = 0; i < 3; i++) {
       if (board[i * 3] != '' &&
           board[i * 3] == board[i * 3 + 1] &&
           board[i * 3 + 2] == board[i * 3 + 1]) {
-        winningLine = [
-          i * 3,
-          i * 3 + 1,
-          i * 3 + 2
-        ]; // ذخیره کردن خانه‌های برنده
+        winningLine = [i * 3, i * 3 + 1, i * 3 + 2];
         return 'row$i';
       }
     }
 
-    // خطوط عمودی
     for (int i = 0; i < 3; i++) {
       if (board[i] != '' &&
           board[i] == board[i + 3] &&
           board[i + 3] == board[i + 6]) {
-        winningLine = [i, i + 3, i + 6]; // ذخیره کردن خانه‌های برنده
+        winningLine = [i, i + 3, i + 6];
         return 'col$i';
       }
     }
 
-    // قطرها
     if (board[0] != '' && board[0] == board[4] && board[4] == board[8]) {
-      winningLine = [0, 4, 8]; // ذخیره کردن خانه‌های برنده
+      winningLine = [0, 4, 8];
       return 'diag1';
     }
     if (board[2] != '' && board[2] == board[4] && board[4] == board[6]) {
-      winningLine = [2, 4, 6]; // ذخیره کردن خانه‌های برنده
+      winningLine = [2, 4, 6];
       return 'diag2';
     }
 
-    // بررسی مساوی
     if (!board.contains('')) {
       return 'Draw';
     }
@@ -86,7 +77,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     return '';
   }
 
-  // نمایش نتیجه بازی
   String _getResultMessage() {
     if (winner == 'Draw') {
       return 'Game Draw!';
@@ -96,7 +86,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     return '$currentPlayer\'s Turn';
   }
 
-  // دکمه برای شروع مجدد بازی
   void _restartGame() {
     setState(() {
       board = List.generate(9, (index) => '');
@@ -119,7 +108,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // نمایش نتیجه بازی
             Text(
               _getResultMessage(),
               style: TextStyle(
@@ -128,11 +116,9 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               ),
             ),
             SizedBox(height: 20),
-            // نمایش شبکه بازی
             Stack(
               alignment: Alignment.center,
               children: [
-                // نمایش شبکه بازی
                 GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -167,7 +153,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
                     );
                   },
                 ),
-                // رسم خط برنده با CustomPainter
                 if (winner != '' && winner != 'Draw')
                   CustomPaint(
                     size: Size(300, 300),
@@ -176,14 +161,13 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               ],
             ),
             SizedBox(height: 20),
-            // دکمه برای شروع مجدد بازی
             ElevatedButton(
               onPressed: () {
                 _restartGame();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // رنگ پس‌زمینه دکمه
-                foregroundColor: Colors.black, // رنگ متن دکمه
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.black,
               ),
               child: Text('Restart'),
             ),
@@ -208,10 +192,8 @@ class LinePainter extends CustomPainter {
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke;
 
-    // مشخصات صفحه
     double gridSize = size.width / 3;
 
-    // محاسبه موقعیت سه خانه برنده
     double x1 = (winningLine[0] % 3) * gridSize + gridSize / 2;
     double y1 = (winningLine[0] ~/ 3) * gridSize + gridSize / 2;
 
@@ -221,7 +203,6 @@ class LinePainter extends CustomPainter {
     double x3 = (winningLine[2] % 3) * gridSize + gridSize / 2;
     double y3 = (winningLine[2] ~/ 3) * gridSize + gridSize / 2;
 
-    // رسم خط از اولین خانه به دومین خانه و از دومین به سومین خانه
     canvas.drawLine(Offset(x1, y1), Offset(x3, y3), paint);
   }
 
