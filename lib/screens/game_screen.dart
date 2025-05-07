@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/score_board.dart';
+// import '../widgets/score_board.dart';
 import '../widgets/game_board.dart';
 
 class GameScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class GameScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          ScoreBoard(),
+          // ScoreBoard(),
           SizedBox(height: 20),
           GameBoard(),
         ],

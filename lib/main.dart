@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/screens/splash.dart';
 import 'screens/game_screen.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class TicTacToeApp extends StatelessWidget {
         primaryColor: Colors.red,
         scaffoldBackgroundColor: Colors.black,
       ),
-      home: const GameScreen(),
+      home: const TicTacToeHomePage(),
     );
   }
 }
